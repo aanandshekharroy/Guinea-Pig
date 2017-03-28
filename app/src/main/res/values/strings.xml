@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">InterviewPrep</string>
+    <string name="app_name">Binge watch</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie_api_key">0105153be6c50857f2ec1ac9a3f65741</string>
 </resources>

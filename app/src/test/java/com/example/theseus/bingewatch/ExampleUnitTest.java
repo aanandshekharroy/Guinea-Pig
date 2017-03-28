@@ -1,4 +1,4 @@
-package com.example.theseus.interviewprep;
+package com.example.theseus.bingewatch;
 
 import org.junit.Test;
 
