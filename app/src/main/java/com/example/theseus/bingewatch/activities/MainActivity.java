@@ -18,6 +18,8 @@ import com.example.theseus.bingewatch.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //writitng a lot of comeenting to etst it out
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
