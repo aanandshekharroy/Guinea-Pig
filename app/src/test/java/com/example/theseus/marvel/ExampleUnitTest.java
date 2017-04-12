@@ -1,4 +1,4 @@
-package com.example.theseus.bingewatch;
+package com.example.theseus.marvel;
 
 import org.junit.Test;
 

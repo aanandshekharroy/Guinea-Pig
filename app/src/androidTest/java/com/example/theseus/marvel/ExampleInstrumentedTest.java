@@ -1,4 +1,4 @@
-package com.example.theseus.bingewatch;
+package com.example.theseus.marvel;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.theseus.bingewatch", appContext.getPackageName());
+        assertEquals("com.example.theseus.marvel", appContext.getPackageName());
     }
 }
