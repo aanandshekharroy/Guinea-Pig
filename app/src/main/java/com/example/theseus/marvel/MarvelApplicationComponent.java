@@ -8,8 +8,7 @@ import retrofit2.Retrofit;
 /**
  * Created by theseus on 12/4/17.
  */
-@Component
+@Component(modules = {SharedPreferenceModule.class,ContextModule.class})
 public interface MarvelApplicationComponent {
-    SharedPreferences getSharedPreferences();
-    Retrofit getRetrofit();
+    SharedPreferences getSharedPreference();
 }
