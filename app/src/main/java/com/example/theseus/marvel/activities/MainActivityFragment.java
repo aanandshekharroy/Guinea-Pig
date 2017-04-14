@@ -1,10 +1,12 @@
-package com.example.theseus.marvel;
+package com.example.theseus.marvel.activities;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.theseus.marvel.R;
 
 /**
  * A placeholder fragment containing a simple view.
