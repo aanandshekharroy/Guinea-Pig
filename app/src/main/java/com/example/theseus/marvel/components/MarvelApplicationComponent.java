@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import com.example.theseus.marvel.modules.ContextModule;
 import com.example.theseus.marvel.modules.MarvelAPIModule;
+import com.example.theseus.marvel.modules.NetworkModule;
 import com.example.theseus.marvel.modules.SharedPreferenceModule;
 
 import dagger.Component;
@@ -11,8 +12,11 @@ import dagger.Component;
 /**
  * Created by theseus on 12/4/17.
  */
-@Component(modules = {SharedPreferenceModule.class,ContextModule.class})
+@Component(modules = {SharedPreferenceModule.class,
+        ContextModule.class,
+        NetworkModule.class,
+        MarvelAPIModule.class})
 public interface MarvelApplicationComponent {
-    SharedPreferences getSharedPreference();
-    MarvelAPIModule getMarvelAPI();
+    public SharedPreferences getSharedPreference();
+    public MarvelAPIModule getMarvelAPI();
 }
