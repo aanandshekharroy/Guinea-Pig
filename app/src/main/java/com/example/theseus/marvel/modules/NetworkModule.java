@@ -1,5 +1,7 @@
 package com.example.theseus.marvel.modules;
 
+import android.content.Context;
+
 import java.io.File;
 import java.util.Timer;
 
@@ -24,9 +26,7 @@ public class NetworkModule {
                 .build();
     }
     @Provides
-    public Cache getCache(){
-        File cacheFile=new File("okhttp-cache");
-        cacheFile.mkdirs();
+    public Cache getCache(File cacheFile){
         int cacheSize=10*1024*1024;
         return new Cache(cacheFile, cacheSize);
     }
@@ -38,5 +38,11 @@ public class NetworkModule {
                 Timber.tag("OkHttp").d(message);
             }
         });
+    }
+    @Provides
+    public File getCacheFile(Context context){
+        File cacheFile=new File(context.getCacheDir(),"okhttp-cache");
+        cacheFile.mkdirs();
+        return cacheFile;
     }
 }

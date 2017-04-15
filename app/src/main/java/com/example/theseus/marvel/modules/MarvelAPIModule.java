@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by theseus on 14/4/17.
  */
-@Module
+@Module(includes = NetworkModule.class)
 public class MarvelAPIModule {
     private final String BASE_URL="";
     @Provides
