@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.theseus.marvel.MarvelApplicationComponentScope;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -13,6 +15,7 @@ import dagger.Provides;
 @Module(includes = {ContextModule.class})
 public class SharedPreferenceModule {
     @Provides
+    @MarvelApplicationComponentScope
     public SharedPreferences getSharedPreferences(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);
     }

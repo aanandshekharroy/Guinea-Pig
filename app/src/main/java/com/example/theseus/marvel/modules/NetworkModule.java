@@ -2,6 +2,8 @@ package com.example.theseus.marvel.modules;
 
 import android.content.Context;
 
+import com.example.theseus.marvel.MarvelApplicationComponentScope;
+
 import java.io.File;
 import java.util.Timer;
 
@@ -17,7 +19,9 @@ import timber.log.Timber;
  */
 @Module
 public class NetworkModule {
+    @MarvelApplicationComponentScope
     @Provides
+
     public OkHttpClient getOkHttpClient(HttpLoggingInterceptor interceptor, Cache cache){
         return new OkHttpClient
                 .Builder()
@@ -25,21 +29,26 @@ public class NetworkModule {
                 .cache(cache)
                 .build();
     }
+    @MarvelApplicationComponentScope
     @Provides
     public Cache getCache(File cacheFile){
         int cacheSize=10*1024*1024;
         return new Cache(cacheFile, cacheSize);
     }
     @Provides
+    @MarvelApplicationComponentScope
     public HttpLoggingInterceptor getInterceptor(){
-        return new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+        HttpLoggingInterceptor interceptor= new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
                 Timber.tag("OkHttp").d(message);
             }
         });
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        return interceptor;
     }
     @Provides
+    @MarvelApplicationComponentScope
     public File getCacheFile(Context context){
         File cacheFile=new File(context.getCacheDir(),"okhttp-cache");
         cacheFile.mkdirs();

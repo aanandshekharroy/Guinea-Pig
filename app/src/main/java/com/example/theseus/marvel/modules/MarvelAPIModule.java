@@ -1,6 +1,7 @@
 package com.example.theseus.marvel.modules;
 
 import com.example.theseus.marvel.MarvelAPI;
+import com.example.theseus.marvel.MarvelApplicationComponentScope;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,6 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MarvelAPIModule {
     private final String BASE_URL="";
     @Provides
+    @MarvelApplicationComponentScope
     public Retrofit getRetrofit(OkHttpClient okHttpClient,Gson gson){
         return new Retrofit.Builder()
                 .client(okHttpClient)
@@ -25,10 +27,12 @@ public class MarvelAPIModule {
                 .build();
     }
     @Provides
+    @MarvelApplicationComponentScope
     public MarvelAPI getMarvelAPI(Retrofit retrofit){
         return retrofit.create(MarvelAPI.class);
     }
     @Provides
+    @MarvelApplicationComponentScope
     public Gson getGson(){
         return new GsonBuilder().create();
     }

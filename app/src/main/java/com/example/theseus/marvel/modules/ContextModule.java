@@ -2,6 +2,8 @@ package com.example.theseus.marvel.modules;
 
 import android.content.Context;
 
+import com.example.theseus.marvel.MarvelApplicationComponentScope;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,6 +17,7 @@ public class ContextModule {
         mContext=context;
     }
     @Provides
+    @MarvelApplicationComponentScope
     public Context getContext(){
         return mContext;
     }

@@ -2,6 +2,7 @@ package com.example.theseus.marvel.modules;
 
 import android.content.Context;
 
+import com.example.theseus.marvel.MarvelApplicationComponentScope;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
@@ -16,6 +17,7 @@ import okhttp3.OkHttpClient;
 @Module(includes = {ContextModule.class,NetworkModule.class})
 public class PicassoModule {
     @Provides
+    @MarvelApplicationComponentScope
     public Picasso getPicasso(Context context, OkHttpClient okHttpClient){
         return new Picasso.Builder(context).downloader(new OkHttp3Downloader(okHttpClient)).build();
     }
