@@ -3,6 +3,8 @@ package com.example.theseus.marvel.components;
 import android.content.SharedPreferences;
 
 import com.example.theseus.marvel.MarvelApplicationComponentScope;
+import com.example.theseus.marvel.activities.MainActivity;
+import com.example.theseus.marvel.activities.MainActivityFragment;
 import com.example.theseus.marvel.modules.ContextModule;
 import com.example.theseus.marvel.modules.MarvelAPIModule;
 import com.example.theseus.marvel.modules.NetworkModule;
@@ -20,7 +22,8 @@ import dagger.Component;
         MarvelAPIModule.class,
         PicassoModule.class})
 public interface MarvelApplicationComponent {
-    SharedPreferences getSharedPreference();
-    MarvelAPIModule getMarvelAPI();
-    Picasso getPicasso();
+//    SharedPreferences getSharedPreference();
+//    MarvelAPIModule getMarvelAPI();
+//    Picasso getPicasso();
+    void inject(MainActivityFragment mainActivityFragment);
 }

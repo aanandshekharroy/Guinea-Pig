@@ -10,5 +10,7 @@ import retrofit2.http.Query;
 
 public interface MarvelAPI {
     @GET("characters")
-    Call<MarvelCharacters.DataBean.ResultsBean> getMarvelCharacters(@Query("api_key") String api_key);
+    Call<MarvelCharacters> getMarvelCharacters(@Query("apikey") String api_key,
+                                                        @Query("ts") String ts,
+                                                        @Query("hash") String hash);
 }

@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 @Module(includes = NetworkModule.class)
 public class MarvelAPIModule {
-    private final String BASE_URL="";
+    private final String BASE_URL="https://gateway.marvel.com/v1/public/";
     @Provides
     @MarvelApplicationComponentScope
     public Retrofit getRetrofit(OkHttpClient okHttpClient,Gson gson){

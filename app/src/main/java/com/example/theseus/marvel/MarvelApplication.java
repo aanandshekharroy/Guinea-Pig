@@ -2,6 +2,7 @@ package com.example.theseus.marvel;
 
 import android.app.Application;
 
+import com.example.theseus.marvel.components.DaggerMarvelApplicationComponent;
 import com.example.theseus.marvel.components.MarvelApplicationComponent;
 import com.example.theseus.marvel.modules.ContextModule;
 
@@ -16,10 +17,10 @@ public class MarvelApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if(!BuildConfig.DEBUG){
+        if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
         }
-        Timber.e("errorfre");
+        Timber.e("errorfree");
         marvelApplicationComponent=  DaggerMarvelApplicationComponent.builder()
                 .contextModule(new ContextModule(this))
                 .build();
