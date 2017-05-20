@@ -1,4 +1,4 @@
-package com.example.theseus.marvel;
+package com.example.theseus.pomodoro;
 
 import org.junit.Test;
 

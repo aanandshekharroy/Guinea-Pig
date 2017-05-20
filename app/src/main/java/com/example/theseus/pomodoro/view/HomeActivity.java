@@ -1,4 +1,4 @@
-package com.example.theseus.marvel.activities;
+package com.example.theseus.pomodoro;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,16 +9,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.theseus.marvel.R;
+import com.example.theseus.pomodoro.view.HomeView;
 
-import timber.log.Timber;
-
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -30,14 +28,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        Timber.e("errorfre");
-//
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
@@ -54,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void inflateRewardFragment() {
+
     }
 }

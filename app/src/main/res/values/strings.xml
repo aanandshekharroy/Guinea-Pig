@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Marvel</string>
+    <string name="app_name">Pomodoro</string>
     <string name="action_settings">Settings</string>
-    <string name="public_key">3305b26d993ae521ce86d5baea0327ee</string>
-    <string name="private_key">3e353bb85b28fb69fb6a9f16c6ce1ca23e7b1edb</string>
 </resources>
