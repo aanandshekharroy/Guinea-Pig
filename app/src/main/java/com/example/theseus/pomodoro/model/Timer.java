@@ -12,6 +12,7 @@ public class Timer implements TimerModel {
 
     @Override
     public int getRestDuration() {
+
         return 0;
     }
 }
