@@ -3,7 +3,9 @@ package com.example.theseus.pomodoro.dagger.components;
 import com.example.theseus.pomodoro.dagger.modules.ContextModule;
 import com.example.theseus.pomodoro.dagger.modules.SharedPreferencesModule;
 import com.example.theseus.pomodoro.dagger.scopes.ApplicationScope;
+import com.example.theseus.pomodoro.model.Timer;
 import com.example.theseus.pomodoro.model.TimerModel;
+import com.example.theseus.pomodoro.view.HomeActivity;
 
 import dagger.Component;
 import dagger.Module;
@@ -14,5 +16,7 @@ import dagger.Module;
 @ApplicationScope
 @Component(modules = {ContextModule.class, SharedPreferencesModule.class})
 public interface PomodoroApplicationComponent {
-    void inject(TimerModel timerModel);
+    void inject(Timer timer);
+
+    void inject(HomeActivity homeActivity);
 }

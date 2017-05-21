@@ -1,25 +1,38 @@
-package com.example.theseus.pomodoro;
+package com.example.theseus.pomodoro.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.theseus.pomodoro.PomodoroApplication;
+import com.example.theseus.pomodoro.R;
+import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
+import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
+import com.example.theseus.pomodoro.dagger.modules.ContextModule;
+import com.example.theseus.pomodoro.presenter.HomePresenter;
+import com.example.theseus.pomodoro.presenter.HomePresenterInterface;
 import com.example.theseus.pomodoro.view.HomeView;
 
-public class HomeActivity extends AppCompatActivity implements HomeView {
+import javax.inject.Inject;
 
+public class HomeActivity extends AppCompatActivity implements HomeView {
+    HomePresenterInterface homePresenter;
+    @Inject
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        homePresenter=new HomePresenter();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +41,13 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                         .setAction("Action", null).show();
             }
         });
+        PomodoroApplicationComponent component=DaggerPomodoroApplicationComponent
+                .builder()
+                .contextModule(new ContextModule(PomodoroApplication.getContext()))
+                .build();
+        component.inject(this);
+        Log.d("HomeActivity: ","t="+sharedPreferences.getInt("rest",10));
+        homePresenter.startTimerClicked();
     }
 
     @Override
@@ -54,6 +74,11 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
     @Override
     public void inflateRewardFragment() {
+
+    }
+
+    @Override
+    public void setupTimer(int duration) {
 
     }
 }
