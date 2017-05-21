@@ -5,6 +5,8 @@ package com.example.theseus.pomodoro.model;
  */
 
 public interface TimerModel {
-    public int getWorkTimerDuration(String state);
+    public String getWorkTimerText();
     public int getRestDuration();
+
+    void startCountdownTimer(String duration);
 }

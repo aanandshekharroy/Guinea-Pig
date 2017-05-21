@@ -5,6 +5,9 @@ package com.example.theseus.pomodoro.view;
  */
 
 public interface HomeView {
-    public void inflateRewardFragment();
-    public void setupTimer(int duration);
+    void inflateRewardFragment();
+    void setupTimer(int duration);
+    void setButtonTag(String tag);
+    String getButtonTag(String tag);
+    void setTimerText(String text);
 }

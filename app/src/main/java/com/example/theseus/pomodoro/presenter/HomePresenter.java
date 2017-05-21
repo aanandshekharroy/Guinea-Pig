@@ -2,6 +2,7 @@ package com.example.theseus.pomodoro.presenter;
 
 import com.example.theseus.pomodoro.model.Timer;
 import com.example.theseus.pomodoro.model.TimerModel;
+import com.example.theseus.pomodoro.view.HomeView;
 
 /**
  * Created by theseus on 20/5/17.
@@ -12,9 +13,17 @@ public class HomePresenter implements HomePresenterInterface {
     public HomePresenter(){
         timerModel=new Timer();
     }
+
+
     @Override
-    public int startTimerClicked() {
-        timerModel.getRestDuration();
+    public void setupWorkTimer(HomeView homeView) {
+        String text=timerModel.getWorkTimerText();
+        homeView.setTimerText(text);
+    }
+
+    @Override
+    public int startTimerClicked(String text) {
+        timerModel.startCountdownTimer(text);
         return 0;
     }
 
