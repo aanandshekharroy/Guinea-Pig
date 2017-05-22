@@ -1,5 +1,6 @@
 package com.example.theseus.pomodoro.presenter;
 
+import com.example.theseus.pomodoro.model.CountdownEvent;
 import com.example.theseus.pomodoro.model.Timer;
 import com.example.theseus.pomodoro.model.TimerModel;
 import com.example.theseus.pomodoro.view.HomeView;
@@ -10,7 +11,9 @@ import com.example.theseus.pomodoro.view.HomeView;
 
 public class HomePresenter implements HomePresenterInterface {
     TimerModel timerModel;
-    public HomePresenter(){
+    HomeView homeView;
+    public HomePresenter(HomeView homeView){
+        this.homeView=homeView;
         timerModel=new Timer();
     }
 
@@ -25,6 +28,15 @@ public class HomePresenter implements HomePresenterInterface {
     public int startTimerClicked(String text) {
         timerModel.startCountdownTimer(text);
         return 0;
+    }
+
+    @Override
+    public void updateTimerText(CountdownEvent event) {
+        if(event.isEventFinished()){
+            homeView.inflateRewardFragment();
+        }else{
+
+        }
     }
 
     @Override

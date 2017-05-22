@@ -6,7 +6,17 @@ package com.example.theseus.pomodoro.model;
 
 public class CountdownEvent {
     boolean eventFinished;
-    public CountdownEvent(boolean eventFinished){
+    long millisUntilFinished;
+    public CountdownEvent(boolean eventFinished, long millisUntilFinished){
         this.eventFinished=eventFinished;
+        this.millisUntilFinished=millisUntilFinished;
+    }
+
+    public boolean isEventFinished() {
+        return eventFinished;
+    }
+
+    public long getMillisUntilFinished() {
+        return millisUntilFinished;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.theseus.pomodoro.model;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
@@ -14,6 +16,8 @@ import com.example.theseus.pomodoro.dagger.modules.ContextModule;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 import static java.lang.reflect.Array.getInt;
 
 /**
@@ -23,6 +27,9 @@ import static java.lang.reflect.Array.getInt;
 public class Timer implements TimerModel {
     @Inject
     SharedPreferences sharedPreferences;
+
+    @Inject
+    Context mContext;
 
     public Timer(){
         PomodoroApplicationComponent component= DaggerPomodoroApplicationComponent
@@ -54,9 +61,10 @@ public class Timer implements TimerModel {
     public void startCountdownTimer(String duration) {
         if(duration.equals("25:00")){
 
-            /*
-            *  starTheService
-            * */
+            Intent countdownServiceIntent=new Intent(mContext,CountdownService.class);
+            Timber.d("service started");
+            mContext.startService(countdownServiceIntent);
+
         }
     }
 }

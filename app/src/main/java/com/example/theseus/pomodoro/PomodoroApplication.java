@@ -5,7 +5,10 @@ import android.content.Context;
 
 import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
+import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
 import com.example.theseus.pomodoro.dagger.modules.ContextModule;
+
+import timber.log.Timber;
 
 /**
  * Created by theseus on 20/5/17.
@@ -18,11 +21,19 @@ public class PomodoroApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (BuildConfig.DEBUG) {
+            Timber.uprootAll();
+            Timber.plant(new Timber.DebugTree());
+        }
+        Timber.d("started");
         mContext=getApplicationContext();
-        mPomodoroApplicationComponent= DaggerPomodoroApplicationComponent
-                .builder()
-                .contextModule(new ContextModule(mContext))
-                .build();
+//        mPomodoroApplicationComponent= DaggerPomodoroApplicationComponent
+//                .builder()
+//.activityModule(new ActivityModule())
+//                .contextModule(new ContextModule(mContext))
+//                .build();
+//        activityComponent= DaggerActivityComponent.builder()
 //        getA
 
     }
@@ -31,8 +42,5 @@ public class PomodoroApplication extends Application {
     }
     public PomodoroApplicationComponent getPomodoroAppplicationComponent(){
         return mPomodoroApplicationComponent;
-    }
-    public static String getRe(){
-        return "Ff";
     }
 }
