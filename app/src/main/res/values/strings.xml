@@ -2,4 +2,6 @@
     <string name="app_name">Pomodoro</string>
     <string name="action_settings">Settings</string>
     <string name="do_you_accept_the_reward">Do you accept the award?</string>
+    <string name="accept_reward">Yes, I accept the reward.</string>
+    <string name="reject_reward">No, I wasn\'t focused.</string>
 </resources>

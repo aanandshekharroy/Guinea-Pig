@@ -10,4 +10,6 @@ public interface HomeView {
     void setButtonTag(String tag);
     String getButtonTag(String tag);
     void setTimerText(String text);
+
+    void dismissRewardsFragment();
 }

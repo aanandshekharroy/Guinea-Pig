@@ -3,10 +3,12 @@ package com.example.theseus.pomodoro;
 import android.app.Application;
 import android.content.Context;
 
+import com.activeandroid.ActiveAndroid;
 import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
 import com.example.theseus.pomodoro.dagger.modules.ContextModule;
+import com.facebook.stetho.Stetho;
 
 import timber.log.Timber;
 
@@ -21,7 +23,8 @@ public class PomodoroApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Stetho.initializeWithDefaults(this);
+        ActiveAndroid.initialize(this);
         if (BuildConfig.DEBUG) {
             Timber.uprootAll();
             Timber.plant(new Timber.DebugTree());

@@ -32,13 +32,16 @@ import butterknife.OnClick;
 import timber.log.Timber;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
-    HomePresenterInterface homePresenter;
     @BindView(R.id.start_timer)
     Button start_timer;
     @BindView(R.id.timer_view)
     TextView timer_view;
     @Inject
     FragmentManager fragmentManager;
+    @Inject
+    RewardsFragment rewardsFragment;
+    @Inject
+    HomePresenterInterface homePresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,6 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                 .build();
         component.inject(this);
         if(savedInstanceState==null){
-            homePresenter=new HomePresenter(this);
             homePresenter.setupWorkTimer(this);
         }
     }
@@ -116,11 +118,14 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     public void inflateRewardFragment() {
 //        fragmentManager
         Timber.d("null:"+(fragmentManager==null));
-        RewardsFragment rewardsFragment=new RewardsFragment();
-//        rewardsFragment.
         rewardsFragment.show(fragmentManager,"RewardsFragment");
 //        rewardsFragment.
 
+    }
+
+    @Override
+    public void dismissRewardsFragment() {
+        rewardsFragment.dismiss();
     }
 
     @Override

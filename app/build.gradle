@@ -20,7 +20,10 @@ android {
     compileOptions.incremental = false
 
 }
-
+repositories {
+    jcenter()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -45,4 +48,10 @@ dependencies {
 
     //Eventbus
     compile 'org.greenrobot:eventbus:3.0.0'
+
+    //Active android
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+    //Stetho
+    compile 'com.facebook.stetho:stetho:1.5.0'
+
 }

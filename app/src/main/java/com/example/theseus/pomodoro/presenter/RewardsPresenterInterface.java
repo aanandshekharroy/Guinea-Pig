@@ -5,5 +5,6 @@ package com.example.theseus.pomodoro.presenter;
  */
 
 public interface RewardsPresenterInterface {
-    public void acceptRewards();
+    void acceptRewards();
+    void rejectRewards();
 }
