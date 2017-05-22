@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                 .build();
         component.inject(this);
         if(savedInstanceState==null){
-            homePresenter.setupWorkTimer(this);
+            homePresenter.setupWorkTimer();
         }
     }
 
@@ -146,6 +146,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
     @Override
     public void setTimerText(String text) {
+        Timber.d("setTimerText: "+text);
         timer_view.setText(text);
     }
 }

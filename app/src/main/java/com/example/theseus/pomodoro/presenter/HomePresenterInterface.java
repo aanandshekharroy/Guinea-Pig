@@ -8,9 +8,10 @@ import com.example.theseus.pomodoro.view.HomeView;
  */
 
 public interface HomePresenterInterface {
-    public void setupWorkTimer(HomeView homeView);
-    public int startTimerClicked(String text);
+    void setupWorkTimer();
+    void setupRestTimer();
+    int startTimerClicked(String text);
     void updateTimerText(CountdownEvent event);
-    public void timerCompleted();
-    public void rewardsFragmentDismissed();
+    void timerCompleted();
+    void rewardsFragmentDismissed();
 }

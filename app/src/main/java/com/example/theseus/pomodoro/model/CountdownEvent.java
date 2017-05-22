@@ -7,9 +7,30 @@ package com.example.theseus.pomodoro.model;
 public class CountdownEvent {
     boolean eventFinished;
     long millisUntilFinished;
+    float fraction;
+    String type;
+    public CountdownEvent(boolean eventFinished, long millisUntilFinished, float fraction) {
+        this.eventFinished = eventFinished;
+        this.millisUntilFinished = millisUntilFinished;
+        this.fraction = fraction;
+    }
+
     public CountdownEvent(boolean eventFinished, long millisUntilFinished){
         this.eventFinished=eventFinished;
         this.millisUntilFinished=millisUntilFinished;
+    }
+
+    public CountdownEvent(boolean eventFinished, String type) {
+        this.eventFinished=eventFinished;
+        this.type=type;
+    }
+
+    public float getFraction() {
+        return fraction;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public boolean isEventFinished() {

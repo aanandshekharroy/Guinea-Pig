@@ -33,6 +33,7 @@ public class RewardsPresenter implements RewardsPresenterInterface{
     public void acceptRewards() {
         rewardsModel.storeRewards();
         homePresenter.rewardsFragmentDismissed();
+        homePresenter.setupRestTimer();
     }
 
     @Override

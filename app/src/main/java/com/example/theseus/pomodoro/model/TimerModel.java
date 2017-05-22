@@ -9,4 +9,8 @@ public interface TimerModel {
     public int getRestDuration();
 
     void startCountdownTimer(String duration);
+
+    String getRestTimerText();
+
+    String getTimerTextFromMilliseconds(long millisUntilFinished);
 }
