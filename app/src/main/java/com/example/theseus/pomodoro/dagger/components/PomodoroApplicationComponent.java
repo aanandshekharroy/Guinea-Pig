@@ -15,9 +15,7 @@ import dagger.Module;
  * Created by theseus on 20/5/17.
  */
 @ApplicationScope
-@Component(modules = {ContextModule.class, SharedPreferencesModule.class, FragmentManagerModule.class})
+@Component(modules = {ContextModule.class, SharedPreferencesModule.class})
 public interface PomodoroApplicationComponent {
     void inject(Timer timer);
-
-    void inject(HomeActivity homeActivity);
 }

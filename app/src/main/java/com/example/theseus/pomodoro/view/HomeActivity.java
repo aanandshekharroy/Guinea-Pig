@@ -2,6 +2,8 @@ package com.example.theseus.pomodoro.view;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.theseus.pomodoro.dagger.components.ActivityComponent;
+import com.example.theseus.pomodoro.dagger.components.DaggerActivityComponent;
 import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.modules.ContextModule;
@@ -44,9 +46,8 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        PomodoroApplicationComponent component= DaggerPomodoroApplicationComponent
+        ActivityComponent component= DaggerActivityComponent
                 .builder()
-                .contextModule(new ContextModule(this))
                 .activityModule(new ActivityModule(this))
                 .build();
         component.inject(this);

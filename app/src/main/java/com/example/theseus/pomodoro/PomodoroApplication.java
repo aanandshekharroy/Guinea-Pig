@@ -28,11 +28,10 @@ public class PomodoroApplication extends Application {
         }
         Timber.d("started");
         mContext=getApplicationContext();
-//        mPomodoroApplicationComponent= DaggerPomodoroApplicationComponent
-//                .builder()
-//.activityModule(new ActivityModule())
-//                .contextModule(new ContextModule(mContext))
-//                .build();
+        mPomodoroApplicationComponent= DaggerPomodoroApplicationComponent
+                .builder()
+                .contextModule(new ContextModule(mContext))
+                .build();
 //        activityComponent= DaggerActivityComponent.builder()
 //        getA
 
