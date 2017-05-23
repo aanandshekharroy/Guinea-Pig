@@ -4,9 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.theseus.pomodoro.dagger.components.ActivityComponent;
 import com.example.theseus.pomodoro.dagger.components.DaggerActivityComponent;
-import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
-import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
-import com.example.theseus.pomodoro.dagger.modules.ContextModule;
 import com.example.theseus.pomodoro.presenter.HomePresenterInterface;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -19,7 +16,8 @@ import android.widget.TextView;
 import com.example.theseus.pomodoro.R;
 import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
 import com.example.theseus.pomodoro.model.CountdownEvent;
-import com.example.theseus.pomodoro.presenter.HomePresenter;
+import com.jakewharton.rxbinding.view.RxView;
+import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,6 +27,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscription;
 import timber.log.Timber;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
@@ -42,6 +41,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     RewardsFragment rewardsFragment;
     @Inject
     HomePresenterInterface homePresenter;
+    Subscription subscription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                 .activityModule(new ActivityModule(this))
                 .build();
         component.inject(this);
+
         if(savedInstanceState==null){
             homePresenter.setupWorkTimer();
         }
@@ -80,6 +81,11 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     @Override
     protected void onResume() {
         super.onResume();
+        subscription= RxView.clicks(start_timer)
+                .subscribe(aVoid -> {
+//                    Toast.makeText(MainActivity.this, "RxView.clicks", Toast.LENGTH_SHORT).show();
+                    homePresenter.startTimerClicked(timer_view.getText().toString());
+                });
         EventBus.getDefault().register(this);
     }
     @Subscribe

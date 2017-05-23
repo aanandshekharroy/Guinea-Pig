@@ -9,4 +9,5 @@ public class Constants {
     public static final String TYPE="type";
     public static final String WORK="work";
     public static final String REST="rest";
+//    public static final String
 }
