@@ -17,6 +17,7 @@ import com.example.theseus.pomodoro.R;
 import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
 import com.example.theseus.pomodoro.model.CountdownEvent;
 import com.jakewharton.rxbinding.view.RxView;
+import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,8 +28,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observable;
 import rx.Subscription;
 import timber.log.Timber;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
     @BindView(R.id.start_timer)
@@ -41,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     RewardsFragment rewardsFragment;
     @Inject
     HomePresenterInterface homePresenter;
-    Subscription subscription;
+    Subscription start_timer_subscription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +62,11 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         if(savedInstanceState==null){
             homePresenter.setupWorkTimer();
         }
+//        start_timer_subscription
+//                .compose(RxLifecycleAndroid.bindActivity(ActivityEvent.DESTROY))
+//                .subscribe();
     }
 
-    /**
-     * Dispatch onPause() to fragments.
-     */
-    @Override
-    protected void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
-    }
 
     /**
      * Dispatch onResume() to fragments.  Note that for better inter-operation
@@ -81,23 +80,33 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     @Override
     protected void onResume() {
         super.onResume();
-        subscription= RxView.clicks(start_timer)
+
+        start_timer_subscription = RxView.clicks(start_timer)
+//                .compose(bindU)
                 .subscribe(aVoid -> {
-//                    Toast.makeText(MainActivity.this, "RxView.clicks", Toast.LENGTH_SHORT).show();
                     homePresenter.startTimerClicked(timer_view.getText().toString());
                 });
+
         EventBus.getDefault().register(this);
     }
+    /**
+     * Dispatch onPause() to fragments.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+        if(!start_timer_subscription.isUnsubscribed()){
+            start_timer_subscription.unsubscribe();
+        }
+    }
+
     @Subscribe
     public void onLocationEvent(CountdownEvent event) {
     /* Do what you need to */
         homePresenter.updateTimerText(event);
 
     };
-    @OnClick(R.id.start_timer)
-    public void onStartTimer(){
-        homePresenter.startTimerClicked(timer_view.getText().toString());
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

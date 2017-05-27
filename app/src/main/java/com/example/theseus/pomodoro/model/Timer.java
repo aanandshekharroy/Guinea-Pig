@@ -17,8 +17,14 @@ import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationC
 import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.modules.ContextModule;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 import static java.lang.reflect.Array.getInt;
