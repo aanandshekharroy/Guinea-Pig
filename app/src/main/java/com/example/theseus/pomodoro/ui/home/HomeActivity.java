@@ -1,11 +1,8 @@
-package com.example.theseus.pomodoro.view;
+package com.example.theseus.pomodoro.ui.home;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.theseus.pomodoro.dagger.components.ActivityComponent;
-import com.example.theseus.pomodoro.dagger.components.DaggerActivityComponent;
-import com.example.theseus.pomodoro.presenter.HomePresenterInterface;
-import android.app.FragmentManager;
+
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,11 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.theseus.pomodoro.R;
+import com.example.theseus.pomodoro.dagger.components.ActivityComponent;
+import com.example.theseus.pomodoro.dagger.components.DaggerActivityComponent;
 import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
 import com.example.theseus.pomodoro.model.CountdownEvent;
 import com.jakewharton.rxbinding.view.RxView;
-import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -27,12 +24,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import rx.Observable;
 import rx.Subscription;
 import timber.log.Timber;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
     @BindView(R.id.start_timer)
@@ -40,11 +33,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     @BindView(R.id.timer_view)
     TextView timer_view;
     @Inject
-    FragmentManager fragmentManager;
-    @Inject
-    RewardsFragment rewardsFragment;
-    @Inject
-    HomePresenterInterface homePresenter;
+    HomePresenterInterface<HomeView> homePresenter;
     Subscription start_timer_subscription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +47,8 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                 .activityModule(new ActivityModule(this))
                 .build();
         component.inject(this);
-
-        if(savedInstanceState==null){
-            homePresenter.setupWorkTimer();
-        }
-//        start_timer_subscription
-//                .compose(RxLifecycleAndroid.bindActivity(ActivityEvent.DESTROY))
-//                .subscribe();
+        homePresenter.onAttach(this);
+        homePresenter.setupTimer();
     }
 
 
@@ -104,7 +88,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     @Subscribe
     public void onLocationEvent(CountdownEvent event) {
     /* Do what you need to */
-        homePresenter.updateTimerText(event);
+//        homePresenter.updateTimerText(event);
 
     };
     @Override
@@ -132,15 +116,22 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     @Override
     public void inflateRewardFragment() {
 //        fragmentManager
-        Timber.d("null:"+(fragmentManager==null));
-        rewardsFragment.show(fragmentManager,"RewardsFragment");
+//        Timber.d("null:"+(fragmentManager==null));
+//        rewardsFragment.show(fragmentManager,"RewardsFragment");
 //        rewardsFragment.
 
     }
 
     @Override
+    protected void onDestroy() {
+        homePresenter.onDetach();
+        super.onDestroy();
+
+    }
+
+    @Override
     public void dismissRewardsFragment() {
-        rewardsFragment.dismiss();
+//        rewardsFragment.dismiss();
     }
 
     @Override
@@ -155,7 +146,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         start_timer.setTag(tag);
     }
     @Override
-    public String getButtonTag(String tag) {
+    public String getButtonTag() {
         return start_timer.getTag().toString();
     }
 

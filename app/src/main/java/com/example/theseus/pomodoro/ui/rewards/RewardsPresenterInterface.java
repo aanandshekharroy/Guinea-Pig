@@ -1,6 +1,6 @@
-package com.example.theseus.pomodoro.presenter;
+package com.example.theseus.pomodoro.ui.rewards;
 
-import com.example.theseus.pomodoro.view.RewardsView;
+import com.example.theseus.pomodoro.ui.MvpPresenter;
 
 /**
  * Created by theseus on 20/5/17.

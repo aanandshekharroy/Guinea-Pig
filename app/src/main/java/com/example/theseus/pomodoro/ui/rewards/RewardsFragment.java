@@ -1,4 +1,4 @@
-package com.example.theseus.pomodoro.view;
+package com.example.theseus.pomodoro.ui.rewards;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.theseus.pomodoro.R;
-import com.example.theseus.pomodoro.presenter.RewardsPresenter;
-import com.example.theseus.pomodoro.presenter.RewardsPresenterInterface;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +29,7 @@ public class RewardsFragment extends DialogFragment implements RewardsView{
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        rewardsPresenter=new RewardsPresenter();
+//        rewardsPresenter=new RewardsPresenter();
     }
 
     @Nullable

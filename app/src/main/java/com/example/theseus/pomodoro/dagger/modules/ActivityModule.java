@@ -4,16 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.example.theseus.pomodoro.dagger.ActivityContext;
-import com.example.theseus.pomodoro.dagger.scopes.ApplicationScope;
-import com.example.theseus.pomodoro.model.Rewards;
-import com.example.theseus.pomodoro.model.RewardsModel;
-import com.example.theseus.pomodoro.presenter.HomePresenter;
-import com.example.theseus.pomodoro.presenter.HomePresenterInterface;
-import com.example.theseus.pomodoro.presenter.RewardsPresenter;
-import com.example.theseus.pomodoro.presenter.RewardsPresenterInterface;
-import com.example.theseus.pomodoro.view.HomeActivity;
-import com.example.theseus.pomodoro.view.HomeView;
-import com.example.theseus.pomodoro.view.RewardsFragment;
+import com.example.theseus.pomodoro.ui.home.HomePresenter;
+import com.example.theseus.pomodoro.ui.home.HomePresenterInterface;
+import com.example.theseus.pomodoro.ui.home.HomeView;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,5 +25,9 @@ public class ActivityModule {
     @ActivityContext
     public Context getContext(){
         return mActivity;
+    }
+    @Provides
+    public HomePresenterInterface<HomeView> getHomePresenter(HomePresenter<HomeView> homePresenter){
+        return homePresenter;
     }
 }

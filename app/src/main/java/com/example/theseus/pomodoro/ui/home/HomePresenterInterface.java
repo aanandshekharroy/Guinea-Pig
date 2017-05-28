@@ -1,7 +1,7 @@
-package com.example.theseus.pomodoro.presenter;
+package com.example.theseus.pomodoro.ui.home;
 
 import com.example.theseus.pomodoro.model.CountdownEvent;
-import com.example.theseus.pomodoro.view.HomeView;
+import com.example.theseus.pomodoro.ui.MvpPresenter;
 
 /**
  * Created by theseus on 20/5/17.
@@ -10,8 +10,10 @@ import com.example.theseus.pomodoro.view.HomeView;
 public interface HomePresenterInterface<V extends HomeView> extends MvpPresenter<V> {
     void setupWorkTimer();
     void setupRestTimer();
-    int startTimerClicked(String text);
+    void startTimerClicked(String text);
     void updateTimerText(CountdownEvent event);
     void timerCompleted();
     void rewardsFragmentDismissed();
+
+    void setupTimer();
 }

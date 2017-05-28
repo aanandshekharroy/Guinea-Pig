@@ -3,9 +3,8 @@ package com.example.theseus.pomodoro;
 import android.app.Application;
 import android.content.Context;
 
-import com.activeandroid.ActiveAndroid;
-import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
-import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
+import com.example.theseus.pomodoro.dagger.components.ApplicationComponent;
+import com.example.theseus.pomodoro.dagger.components.DaggerApplicationComponent;
 import com.example.theseus.pomodoro.dagger.modules.ApplicationModule;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
@@ -17,7 +16,7 @@ import timber.log.Timber;
  */
 
 public class PomodoroApplication extends Application {
-    private PomodoroApplicationComponent mPomodoroApplicationComponent;
+    private ApplicationComponent mPomodoroApplicationComponent;
     private static Context mContext;
 
     @Override
@@ -30,7 +29,6 @@ public class PomodoroApplication extends Application {
         }
         Timber.d("started");
         Stetho.initializeWithDefaults(this);
-        ActiveAndroid.initialize(this);
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -38,10 +36,7 @@ public class PomodoroApplication extends Application {
         }
         LeakCanary.install(this);
         mContext=getApplicationContext();
-        mPomodoroApplicationComponent= DaggerPomodoroApplicationComponent
-                .builder()
-                .contextModule(new ApplicationModule(mContext))
-                .build();
+        mPomodoroApplicationComponent= DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
 //        activityComponent= DaggerActivityComponent.builder()
 //        getA
 
@@ -49,7 +44,7 @@ public class PomodoroApplication extends Application {
     public static Context getContext(){
         return mContext ;
     }
-    public PomodoroApplicationComponent getPomodoroAppplicationComponent(){
+    public ApplicationComponent getPomodoroAppplicationComponent(){
         return mPomodoroApplicationComponent;
     }
 }

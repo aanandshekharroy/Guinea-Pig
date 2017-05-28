@@ -4,4 +4,5 @@
     <string name="do_you_accept_the_reward">Do you accept the award?</string>
     <string name="accept_reward">Yes, I accept the reward.</string>
     <string name="reject_reward">No, I wasn\'t focused.</string>
+    <string name="start_timer">start_timer</string>
 </resources>
