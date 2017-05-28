@@ -31,7 +31,7 @@ public class RewardsFragment extends DialogFragment implements RewardsView{
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        rewardsPresenter=new RewardsPresenter(getActivity());
+        rewardsPresenter=new RewardsPresenter();
     }
 
     @Nullable

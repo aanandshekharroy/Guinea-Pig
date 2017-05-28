@@ -10,11 +10,11 @@ import com.example.theseus.pomodoro.view.HomeView;
  * Created by theseus on 20/5/17.
  */
 
-public class HomePresenter implements HomePresenterInterface {
+public class HomePresenter<V extends HomeView>
+        extends BasePresenter<V>
+        implements HomePresenterInterface<V> {
     TimerModel timerModel;
-    HomeView homeView;
     public HomePresenter(HomeView homeView){
-        this.homeView=homeView;
         timerModel=new Timer();
     }
 
@@ -22,13 +22,13 @@ public class HomePresenter implements HomePresenterInterface {
     @Override
     public void setupWorkTimer() {
         String text=timerModel.getWorkTimerText();
-        homeView.setTimerText(text);
+        getMvpView().setTimerText(text);
     }
 
     @Override
     public void setupRestTimer() {
         String text=timerModel.getRestTimerText();
-        homeView.setTimerText(text);
+        getMvpView().setTimerText(text);
         timerModel.startCountdownTimer(text);
     }
 
@@ -44,11 +44,11 @@ public class HomePresenter implements HomePresenterInterface {
             if(event.getType().equals(Constants.REST)){
                 setupWorkTimer();
             }else if(event.getType().equals(Constants.WORK)){
-                homeView.inflateRewardFragment();
+                getMvpView().inflateRewardFragment();
             }
 
         }else{
-            homeView.setTimerText(timerModel.getTimerTextFromMilliseconds(event.getMillisUntilFinished()));
+            getMvpView().setTimerText(timerModel.getTimerTextFromMilliseconds(event.getMillisUntilFinished()));
         }
     }
 
@@ -59,6 +59,6 @@ public class HomePresenter implements HomePresenterInterface {
 
     @Override
     public void rewardsFragmentDismissed() {
-        homeView.dismissRewardsFragment();
+        getMvpView().dismissRewardsFragment();
     }
 }

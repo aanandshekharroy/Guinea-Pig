@@ -8,6 +8,7 @@ import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
 import com.example.theseus.pomodoro.model.RewardsModel;
 import com.example.theseus.pomodoro.view.HomeActivity;
 import com.example.theseus.pomodoro.view.HomeView;
+import com.example.theseus.pomodoro.view.RewardsView;
 
 import javax.inject.Inject;
 
@@ -15,13 +16,14 @@ import javax.inject.Inject;
  * Created by theseus on 20/5/17.
  */
 
-public class RewardsPresenter implements RewardsPresenterInterface{
+public class RewardsPresenter<V extends RewardsView>
+        extends BasePresenter<V> implements RewardsPresenterInterface<V>{
     @Inject
     HomePresenterInterface homePresenter;
     @Inject
     RewardsModel rewardsModel;
 
-    public RewardsPresenter(Activity activity) {
+    public RewardsPresenter() {
         ActivityComponent component= DaggerActivityComponent
                 .builder()
                 .activityModule(new ActivityModule((HomeActivity) activity))

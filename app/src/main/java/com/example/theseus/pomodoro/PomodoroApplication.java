@@ -6,8 +6,7 @@ import android.content.Context;
 import com.activeandroid.ActiveAndroid;
 import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
-import com.example.theseus.pomodoro.dagger.modules.ActivityModule;
-import com.example.theseus.pomodoro.dagger.modules.ContextModule;
+import com.example.theseus.pomodoro.dagger.modules.ApplicationModule;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -41,7 +40,7 @@ public class PomodoroApplication extends Application {
         mContext=getApplicationContext();
         mPomodoroApplicationComponent= DaggerPomodoroApplicationComponent
                 .builder()
-                .contextModule(new ContextModule(mContext))
+                .contextModule(new ApplicationModule(mContext))
                 .build();
 //        activityComponent= DaggerActivityComponent.builder()
 //        getA

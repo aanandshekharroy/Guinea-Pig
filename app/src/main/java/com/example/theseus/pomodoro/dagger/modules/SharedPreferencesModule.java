@@ -12,7 +12,7 @@ import dagger.Provides;
 /**
  * Created by theseus on 20/5/17.
  */
-@Module(includes = {ContextModule.class})
+@Module(includes = {ApplicationModule.class})
 public class SharedPreferencesModule {
     @Provides
     @ApplicationScope

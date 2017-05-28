@@ -3,31 +3,18 @@ package com.example.theseus.pomodoro.model;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 
 import com.example.theseus.pomodoro.Constants;
 import com.example.theseus.pomodoro.PomodoroApplication;
-import com.example.theseus.pomodoro.R;
 import com.example.theseus.pomodoro.Utilities;
 import com.example.theseus.pomodoro.dagger.components.DaggerPomodoroApplicationComponent;
 import com.example.theseus.pomodoro.dagger.components.PomodoroApplicationComponent;
-import com.example.theseus.pomodoro.dagger.modules.ContextModule;
-
-import java.util.concurrent.TimeUnit;
+import com.example.theseus.pomodoro.dagger.modules.ApplicationModule;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 import timber.log.Timber;
-
-import static java.lang.reflect.Array.getInt;
 
 /**
  * Created by theseus on 20/5/17.
@@ -43,7 +30,7 @@ public class Timer implements TimerModel {
     public Timer(){
         PomodoroApplicationComponent component= DaggerPomodoroApplicationComponent
                 .builder()
-                .contextModule(new ContextModule(PomodoroApplication.getContext()))
+                .contextModule(new ApplicationModule(PomodoroApplication.getContext()))
                 .build();
         component.inject(this);
     }

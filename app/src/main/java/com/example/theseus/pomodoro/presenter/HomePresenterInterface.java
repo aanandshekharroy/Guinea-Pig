@@ -7,7 +7,7 @@ import com.example.theseus.pomodoro.view.HomeView;
  * Created by theseus on 20/5/17.
  */
 
-public interface HomePresenterInterface {
+public interface HomePresenterInterface<V extends HomeView> extends MvpPresenter<V> {
     void setupWorkTimer();
     void setupRestTimer();
     int startTimerClicked(String text);
