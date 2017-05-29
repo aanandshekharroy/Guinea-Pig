@@ -51,6 +51,11 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
+    // required if you want to use Mockito for unit tests
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    // required if you want to use Mockito for Android tests
+    androidTestCompile 'org.mockito:mockito-android:2.7.22'
+
 
     //Dagger 2
     compile "com.google.dagger:dagger:2.9"
