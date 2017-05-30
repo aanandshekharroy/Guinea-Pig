@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 language: android
 jdk: oraclejdk8
 before_cache:
@@ -53,5 +53,3 @@ before_install:
 branches:
         only:
                 - master
-
-global_env: "GRADLE_OPTS=\"-Xmx128m\",
