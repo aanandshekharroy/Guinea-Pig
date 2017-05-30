@@ -53,3 +53,5 @@ before_install:
 branches:
         only:
                 - master
+
+global_env: "GRADLE_OPTS=\"-Xmx128m\",
