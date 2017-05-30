@@ -24,6 +24,5 @@ public class HomeActivityTest {
     @Test
     public void checkIfWorkTimerStartsOnClickButton(){
         onView(withId(R.id.start_timer)).perform(click());
-//        verify()
     }
 }
