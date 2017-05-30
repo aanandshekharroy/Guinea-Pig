@@ -44,7 +44,6 @@ script:
         - ./gradlew clean
         - ./gradlew assembleDebug
         - ./gradlew assembleDebugAndroidTest
-        - ./gradlew build connectedCheck
 
 before_install:
           - mkdir "$ANDROID_HOME/licenses" || true
